@@ -14,6 +14,18 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
 		<?php
+		/* translators: Used between list items, there is a space after the comma. */
+		$categories_list = get_the_category_list( __( ', ', 'twentynineteen' ) );
+		if ( $categories_list ) {
+			printf(
+				/* translators: 1: SVG icon. 2: Posted in label, only visible to screen readers. 3: List of categories. 4: Number. */
+				'<span class="cat-links">%1$s<span class="screen-reader-text"> %2$s</span> %3$s</span> %4$s</span>',
+				twentynineteen_get_icon_svg( 'archive', 16 ),
+				__( 'Posted in', 'twentynineteen' ),
+				$categories_list,
+				get_post_meta( get_the_ID(), 'number', true )
+			); // WPCS: XSS OK.
+		}
 		if ( is_sticky() && is_home() && ! is_paged() ) {
 			printf( '<span class="sticky-post">%s</span>', _x( 'Featured', 'post', 'twentynineteen' ) );
 		}
