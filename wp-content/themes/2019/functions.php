@@ -295,6 +295,14 @@ function twentynineteen_colors_css_wrap() {
 add_action( 'wp_head', 'twentynineteen_colors_css_wrap' );
 
 /**
+ * Change the length of abstract.
+ */
+function twentynineteen_excerpt_length( $length ) {
+	return 255;
+}
+add_filter( 'excerpt_length', 'twentynineteen_excerpt_length' );
+
+/**
  * SVG Icons class.
  */
 require get_template_directory() . '/classes/class-twentynineteen-svg-icons.php';
