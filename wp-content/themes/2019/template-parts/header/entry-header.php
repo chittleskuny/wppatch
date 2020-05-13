@@ -12,7 +12,7 @@ $discussion = ! is_page() && twentynineteen_can_show_post_thumbnail() ? twentyni
 <?php
 /* translators: Used between list items, there is a space after the comma. */
 $categories_list = get_the_category_list( __( ', ', 'twentynineteen' ) );
-if ( $categories_list ) {
+if ( $categories_list &&  ! strpos( $categories_list, '未分类' ) ) {
 	printf(
 		/* translators: 1: SVG icon. 2: Posted in label, only visible to screen readers. 3: List of categories. 4: Number. */
 		'<span class="cat-links">%1$s<span class="screen-reader-text"> %2$s</span> %3$s</span> %4$s</span>',
