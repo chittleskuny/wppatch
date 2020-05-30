@@ -3710,6 +3710,16 @@ body.page .main-navigation {
   overflow: hidden;
 }
 
+.patch-left {
+  float: left;
+  width: 25%;
+}
+
+.patch-right {
+  float: left;
+  width: 75%;
+}
+
 /* Content */
 /*--------------------------------------------------------------
 ## Header
