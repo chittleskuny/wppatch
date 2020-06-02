@@ -34,15 +34,21 @@
 	</header><!-- #masthead -->
 
 	<div id="sidebar" class="site-sidebar", role="complementary">
+		<?php get_search_form(); ?>
 
+		<?php
+		wp_list_categories(
+			array(
+				'show_count' => 1,
+				'title_li'   => '<h2>' . __( 'Categories' ) . '</h2>',
+			)
+		);
+		?>
 		<ul>
 			<?php
 			/* Widgetized sidebar, if you have the plugin installed. */
 			if ( ! function_exists( 'dynamic_sidebar' ) || ! dynamic_sidebar() ) :
 				?>
-			<li>
-				<?php get_search_form(); ?>
-			</li>
 
 			<!-- Author information is disabled per default. Uncomment and fill in your details if you want to use it.
 			<li><h2><?php _e( 'Author' ); ?></h2>
@@ -132,39 +138,21 @@
 			</li>
 			<?php endif; ?>
 		</ul>
-		<ul role="navigation">
-				<?php wp_list_pages( 'title_li=<h2>' . __( 'Pages' ) . '</h2>' ); ?>
 
-			<li><h2><?php _e( 'Archives' ); ?></h2>
-				<ul>
-				<?php wp_get_archives( array( 'type' => 'monthly' ) ); ?>
-				</ul>
-			</li>
+		<?php if ( is_home() || is_page() ) { /* If this is the frontpage */ ?>
+			<?php wp_list_bookmarks(); ?>
 
-				<?php
-				wp_list_categories(
-					array(
-						'show_count' => 1,
-						'title_li'   => '<h2>' . __( 'Categories' ) . '</h2>',
-					)
-				);
-				?>
-		</ul>
+		<li><h2><?php _e( 'Meta' ); ?></h2>
 		<ul>
-				<?php if ( is_home() || is_page() ) { /* If this is the frontpage */ ?>
-					<?php wp_list_bookmarks(); ?>
-
-				<li><h2><?php _e( 'Meta' ); ?></h2>
-				<ul>
-					<?php wp_register(); ?>
-					<li><?php wp_loginout(); ?></li>
-					<?php wp_meta(); ?>
-				</ul>
-				</li>
-			<?php } ?>
-
-			<?php endif; /* ! dynamic_sidebar() */ ?>
+			<?php wp_register(); ?>
+			<li><?php wp_loginout(); ?></li>
+			<?php wp_meta(); ?>
 		</ul>
+		</li>
+	<?php } ?>
+
+	<?php endif; /* ! dynamic_sidebar() */ ?>
+
 	</div>
 
 	<footer id="colophon" class="site-footer">
@@ -200,3 +188,4 @@
 			<?php endif; ?>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
+
