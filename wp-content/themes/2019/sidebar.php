@@ -36,7 +36,6 @@
 	<div id="sidebar" class="site-sidebar", role="complementary">
 		<?php
 			get_search_form();
-			twentynineteen_mix_list();
 		?>
 		<ul>
 			<?php
@@ -133,24 +132,30 @@
 			<?php endif; ?>
 		</ul>
 
-		<?php if ( is_home() || is_page() ) { /* If this is the frontpage */ ?>
-			<?php wp_list_bookmarks(); ?>
-
-		<li><h2><?php _e( 'Meta' ); ?></h2>
-		<ul>
-			<?php wp_register(); ?>
-			<li><?php wp_loginout(); ?></li>
-			<?php wp_meta(); ?>
-		</ul>
-		</li>
-	<?php } ?>
-
 	<?php endif; /* ! dynamic_sidebar() */ ?>
 
 	</div>
 
+	<div id="sidebar" class="site-sidebar", role="complementary">
+		<?php twentynineteen_mix_list(); ?>
+	</div>
+
 	<footer id="colophon" class="site-footer">
 		<?php get_template_part( 'template-parts/footer/footer', 'widgets' ); ?>
+		<div class="site-info">
+			<?php if ( is_home() || is_page() ) { /* If this is the frontpage */ ?>
+				<?php wp_list_bookmarks(); ?>
+
+			<li><h2><?php _e( 'Meta' ); ?></h2>
+			<ul>
+				<?php wp_register(); ?>
+				<li><?php wp_loginout(); ?></li>
+				<?php wp_meta(); ?>
+			</ul>
+			</li>
+			<?php } ?>
+		</div>
+
 		<div class="site-info">
 			<?php $blog_info = get_bloginfo( 'name' ); ?>
 			<?php if ( ! empty( $blog_info ) ) : ?>
