@@ -34,15 +34,9 @@
 	</header><!-- #masthead -->
 
 	<div id="sidebar" class="site-sidebar", role="complementary">
-		<?php get_search_form(); ?>
-
 		<?php
-		wp_list_categories(
-			array(
-				'show_count' => 1,
-				'title_li'   => '<h2>' . __( 'Categories' ) . '</h2>',
-			)
-		);
+			get_search_form();
+			twentynineteen_mix_list();
 		?>
 		<ul>
 			<?php
