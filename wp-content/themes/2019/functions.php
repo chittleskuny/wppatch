@@ -311,10 +311,10 @@ function twentynineteen_mix_list() {
 	foreach ( $mix_posts as $mix_post ) {
 		$mix_category_id = $mix_post->post_category[0];
 		if ( $mix_category_id === 1 ) {
-			?><li><a href="<?php get_permalink( $mix_post ); ?>"><?php echo $mix_post->post_title; ?></a></li><?php
+			?><li><a href="<?php echo get_permalink( $mix_post ); ?>"><?php echo $mix_post->post_title; ?></a></li><?php
 		}
 		elseif ( $last_mix_category_id !== $mix_category_id ) {
-			?><li><a href="<?php get_category_link( $mix_category_id ); ?>"><?php echo get_category( $mix_category_id )->name; ?></a></li><?php
+			?><li><a href="<?php echo get_category_link( $mix_category_id ); ?>"><?php echo get_category( $mix_category_id )->name; ?></a></li><?php
 		}
 		else {
 			continue;
