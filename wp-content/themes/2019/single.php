@@ -11,7 +11,10 @@
 
 get_header();
 ?>
-
+<div id="patch-left" class="patch-left">
+	<?php get_sidebar(); ?>
+</div><!-- .patch-left -->
+<div id="patch-right" class="patch-right">
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main">
 
@@ -55,6 +58,6 @@ get_header();
 
 		</main><!-- #main -->
 	</div><!-- #primary -->
-
+</div><!-- .patch-right -->
 <?php
 get_footer();
