@@ -306,11 +306,29 @@ add_filter( 'excerpt_length', 'twentynineteen_excerpt_length' );
  * My mix list.
  */
 function twentynineteen_mix_list() {
-	$mix_posts = get_posts( 'numberposts=1024&orderby=date' );
+	$mix_posts = get_posts( 'numberposts=1024&orderby=date&order=ASC' );
 	$last_mix_category_id = 0;
+	$current_category_id = get_query_var('cat');
+	$indent = false;
 	foreach ( $mix_posts as $mix_post ) {
 		$mix_category_id = $mix_post->post_category[0];
-		if ( $mix_category_id === 1 ) {
+
+		if ( $indent && $last_mix_category_id !== $mix_category_id ) {
+			$indent = false;
+			?></ul></li><?php
+		}
+
+		if ( is_single() && $mix_category_id === get_post( get_the_ID() )->post_category[0] ) {
+			?><li><a href="<?php echo get_permalink( $mix_post ); ?>"><?php echo $mix_post->post_title; ?></a></li><?php
+		}
+		elseif ( is_category() && $mix_category_id === $current_category_id ) {
+			if ( !$indent && $last_mix_category_id !== $mix_category_id ) {
+				?><li><a href="<?php echo get_category_link( $mix_category_id ); ?>"><?php echo get_category( $mix_category_id )->name; ?></a><ul><?php
+				$indent = true;
+			}
+			?><li><a href="<?php echo get_permalink( $mix_post ); ?>"><?php echo $mix_post->post_title; ?></a></li><?php
+		}
+		elseif ( $mix_category_id === 1 ) {
 			?><li><a href="<?php echo get_permalink( $mix_post ); ?>"><?php echo $mix_post->post_title; ?></a></li><?php
 		}
 		elseif ( $last_mix_category_id !== $mix_category_id ) {
@@ -357,4 +375,3 @@ require get_template_directory() . '/inc/template-tags.php';
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
-
