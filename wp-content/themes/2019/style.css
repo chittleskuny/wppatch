@@ -3712,16 +3712,19 @@ body.page .main-navigation {
 
 .patch-left {
   float: left;
-  width: 75%;
+  width: 25%;
 }
 
 .patch-right {
   float: left;
-  width: 25%;
+  width: 75%;
 }
 
 .patch-sidebar {
-  margin: 50px;
+  margin: 25px;
+}
+
+.patch-mix {
 }
 
 /* Content */
