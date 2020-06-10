@@ -307,8 +307,9 @@ add_filter( 'excerpt_length', 'twentynineteen_excerpt_length' );
  */
 function twentynineteen_mix_list() {
 	$mix_posts = get_posts( 'numberposts=1024&orderby=date&order=ASC' );
-	$last_mix_category_id = 0;
+	$current_post_category_id = get_post( get_the_ID() )->post_category[0];
 	$current_category_id = get_query_var('cat');
+	$last_mix_category_id = 0;
 	$indent = false;
 	foreach ( $mix_posts as $mix_post ) {
 		$mix_category_id = $mix_post->post_category[0];
@@ -318,21 +319,38 @@ function twentynineteen_mix_list() {
 			?></ul></li><?php
 		}
 
-		if ( is_single() && $mix_category_id === get_post( get_the_ID() )->post_category[0] ) {
+		if ( $mix_category_id === 1 ) {
 			?><li class="patch-mix"><a href="<?php echo get_permalink( $mix_post ); ?>"><?php echo $mix_post->post_title; ?></a></li><?php
 		}
-		elseif ( is_category() && $mix_category_id === $current_category_id ) {
-			if ( !$indent && $last_mix_category_id !== $mix_category_id ) {
-				?><li class="patch-mix"><a href="<?php echo get_category_link( $mix_category_id ); ?>"><?php echo get_category( $mix_category_id )->name; ?></a><ul class="patch-mix"><?php
-				$indent = true;
+		elseif ( is_single() ) {
+			if ( $mix_category_id === $current_post_category_id ) {
+				if ( !$indent ) {
+					?><li class="patch-mix"><a href="<?php echo get_category_link( $mix_category_id ); ?>"><?php echo get_category( $mix_category_id )->name; ?></a><ul class="patch-mix"><?php
+					$indent = true;
+				}
+				?><li class="patch-mix"><a href="<?php echo get_permalink( $mix_post ); ?>"><?php echo $mix_post->post_title; ?></a></li><?php
 			}
-			?><li class="patch-mix"><a href="<?php echo get_permalink( $mix_post ); ?>"><?php echo $mix_post->post_title; ?></a></li><?php
+			elseif ( $last_mix_category_id !== $mix_category_id ) {
+				?><li class="patch-mix"><a href="<?php echo get_category_link( $mix_category_id ); ?>"><?php echo get_category( $mix_category_id )->name; ?></a></li><?php
+			}
+			else {
+				continue;
+			}
 		}
-		elseif ( $mix_category_id === 1 ) {
-			?><li class="patch-mix"><a href="<?php echo get_permalink( $mix_post ); ?>"><?php echo $mix_post->post_title; ?></a></li><?php
-		}
-		elseif ( $last_mix_category_id !== $mix_category_id ) {
-			?><li class="patch-mix"><a href="<?php echo get_category_link( $mix_category_id ); ?>"><?php echo get_category( $mix_category_id )->name; ?></a></li><?php
+		elseif ( is_category() ){
+			if ( $mix_category_id === $current_category_id ) {
+				if ( !$indent ) {
+					?><li class="patch-mix"><a href="<?php echo get_category_link( $mix_category_id ); ?>"><?php echo get_category( $mix_category_id )->name; ?></a><ul class="patch-mix"><?php
+					$indent = true;
+				}
+				?><li class="patch-mix"><a href="<?php echo get_permalink( $mix_post ); ?>"><?php echo $mix_post->post_title; ?></a></li><?php
+			}
+			elseif ( $last_mix_category_id !== $mix_category_id ) {
+				?><li class="patch-mix"><a href="<?php echo get_category_link( $mix_category_id ); ?>"><?php echo get_category( $mix_category_id )->name; ?></a></li><?php
+			}
+			else {
+				continue;
+			}
 		}
 		else {
 			continue;
@@ -375,3 +393,4 @@ require get_template_directory() . '/inc/template-tags.php';
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
+
