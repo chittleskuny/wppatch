@@ -352,6 +352,9 @@ function twentynineteen_mix_list() {
 				continue;
 			}
 		}
+		elseif ( $last_mix_category_id !== $mix_category_id ) {
+			?><li class="patch-mix"><a href="<?php echo get_category_link( $mix_category_id ); ?>"><?php echo get_category( $mix_category_id )->name; ?></a></li><?php
+		}
 		else {
 			continue;
 		}
