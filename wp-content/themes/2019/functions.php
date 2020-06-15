@@ -320,15 +320,25 @@ function twentynineteen_mix_list() {
 		}
 
 		if ( $mix_category_id === 1 ) {
-			?><li class="patch-mix"><a href="<?php echo get_permalink( $mix_post ); ?>"><?php echo $mix_post->post_title; ?></a></li><?php
+			if ( $mix_post->ID == get_the_ID() ) {
+				?><li class="patch-mix"><a href="<?php echo get_permalink( $mix_post ); ?>"><b><?php echo $mix_post->post_title; ?></b></a></li><?php
+			}
+			else {
+				?><li class="patch-mix"><a href="<?php echo get_permalink( $mix_post ); ?>"><?php echo $mix_post->post_title; ?></a></li><?php
+			}
 		}
 		elseif ( is_single() ) {
 			if ( $mix_category_id === $current_post_category_id ) {
 				if ( !$indent ) {
-					?><li class="patch-mix"><a href="<?php echo get_category_link( $mix_category_id ); ?>"><?php echo get_category( $mix_category_id )->name; ?></a><ul class="patch-mix"><?php
+					?><li class="patch-mix"><a href="<?php echo get_category_link( $mix_category_id ); ?>"><?php echo get_category( $mix_category_id )->name; ?></b></a><ul class="patch-mix"><?php
 					$indent = true;
 				}
-				?><li class="patch-mix"><a href="<?php echo get_permalink( $mix_post ); ?>"><?php echo $mix_post->post_title; ?></a></li><?php
+				if ( $mix_post->ID == get_the_ID() ) {
+					?><li class="patch-mix"><a href="<?php echo get_permalink( $mix_post ); ?>"><b><?php echo $mix_post->post_title; ?></b></a></li><?php
+				}
+				else {
+					?><li class="patch-mix"><a href="<?php echo get_permalink( $mix_post ); ?>"><?php echo $mix_post->post_title; ?></a></li><?php
+				}
 			}
 			elseif ( $last_mix_category_id !== $mix_category_id ) {
 				?><li class="patch-mix"><a href="<?php echo get_category_link( $mix_category_id ); ?>"><?php echo get_category( $mix_category_id )->name; ?></a></li><?php
@@ -340,7 +350,7 @@ function twentynineteen_mix_list() {
 		elseif ( is_category() ){
 			if ( $mix_category_id === $current_category_id ) {
 				if ( !$indent ) {
-					?><li class="patch-mix"><a href="<?php echo get_category_link( $mix_category_id ); ?>"><?php echo get_category( $mix_category_id )->name; ?></a><ul class="patch-mix"><?php
+					?><li class="patch-mix"><a href="<?php echo get_category_link( $mix_category_id ); ?>"><b><?php echo get_category( $mix_category_id )->name; ?></b></a><ul class="patch-mix"><?php
 					$indent = true;
 				}
 				?><li class="patch-mix"><a href="<?php echo get_permalink( $mix_post ); ?>"><?php echo $mix_post->post_title; ?></a></li><?php

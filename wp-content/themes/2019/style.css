@@ -2216,7 +2216,7 @@ body {
   font-family: "NonBreakingSpaceOverride", "Hoefler Text", Garamond, "Times New Roman", serif;
   font-weight: 400;
   font-size: 0.64em;
-  line-height: 1.8;
+  line-height: 1.5;
   margin: 0;
   text-rendering: optimizeLegibility;
 }
@@ -2439,7 +2439,7 @@ code,
 kbd,
 tt,
 var {
-  font-size: 0.81em;
+  font-size: 1em;
   font-family: Menlo, monaco, Consolas, Lucida Console, monospace;
 }
 
