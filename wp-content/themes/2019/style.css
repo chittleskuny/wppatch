@@ -2426,9 +2426,9 @@ blockquote cite {
 }
 
 pre {
-  font-size: 1em;
+  font-size: 0.9em;
   font-family: "Courier 10 Pitch", Courier, monospace;
-  line-height: 1;
+  line-height: 1.1;
   overflow: auto;
   background-color: #111111;
   color: #fff;
