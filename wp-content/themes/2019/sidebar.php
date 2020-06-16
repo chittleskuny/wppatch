@@ -7,7 +7,7 @@
  * This file is here for backward compatibility with old themes and will be removed in a future version.
  */
 ?>
-	<header id="masthead" class="<?php echo is_singular() && twentynineteen_can_show_post_thumbnail() ? 'site-header featured-image' : 'site-header'; ?>">
+	<header id="masthead" class="site-header">
 
 		<div class="site-branding-container">
 			<?php get_template_part( 'template-parts/header/site', 'branding' ); ?>
@@ -33,7 +33,7 @@
 		<?php endif; ?>
 	</header><!-- #masthead -->
 
-	<div id="sidebar" class="patch-sidebar", role="complementary">
+	<div id="patch-sidebar-search-form" class="patch-sidebar-search-form", role="complementary">
 		<?php
 			get_search_form();
 		?>
@@ -54,7 +54,7 @@
 
 	</div>
 
-	<div id="sidebar" class="patch-sidebar", role="complementary"><ul>
+	<div id="patch-sidebar-mix" class="patch-sidebar-mix", role="complementary"><ul>
 		<?php twentynineteen_mix_list(); ?>
 	</ul></div>
 

@@ -3712,21 +3712,39 @@ body.page .main-navigation {
 
 .site-content {
   overflow: hidden;
+  min-height: 100%;
+  position: relative;
 }
 
 .patch-left {
+  display: flex;
+  flex-direction: column;
   float: left;
-  width: 25%;
-  background-color: #f3f9f1
+  width: 400px;
+  height: 100%;
+  background-color: #f3f9f1;
+  position: fixed;
 }
 
 .patch-right {
+  margin-left: 400px;
   float: left;
   width: 75%;
 }
 
-.patch-sidebar {
+.patch-sidebar,
+.patch-sidebar-search-form,
+.patch-sidebar-mix {
   margin: 0 calc(10%);
+}
+
+.patch-sidebar-search-form {
+  height: 100px;
+}
+
+.patch-sidebar-mix {
+  flex: 1;
+  overflow: scroll;
 }
 
 .patch-mix {
@@ -3739,6 +3757,7 @@ body.page .main-navigation {
 --------------------------------------------------------------*/
 .site-header {
   padding: 1em;
+  height: 200px;
 }
 
 .site-header.featured-image {
@@ -5033,6 +5052,10 @@ body.page .main-navigation {
 ## Footer
 --------------------------------------------------------------*/
 /* Site footer */
+.site-footer {
+  height: 100px;
+}
+
 #colophon .widget-area,
 #colophon .site-info {
   margin: calc(2 * 1rem) 1rem;
@@ -5041,7 +5064,7 @@ body.page .main-navigation {
 @media only screen and (min-width: 768px) {
   #colophon .widget-area,
   #colophon .site-info {
-    margin: calc(3 * 1rem) calc(10%);
+    margin: calc(1 * 1rem) calc(10%);
   }
 }
 
