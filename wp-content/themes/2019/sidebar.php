@@ -60,8 +60,8 @@
 
 	<footer id="colophon" class="site-footer">
 		<?php get_template_part( 'template-parts/footer/footer', 'widgets' ); ?>
-		<div class="site-info">
-			<ul>
+		<div class="site-account">
+			<ul class="site-account-list">
 				<?php wp_register(); ?>
 				<li><?php wp_loginout(); ?></li>
 				<?php wp_meta(); ?>
