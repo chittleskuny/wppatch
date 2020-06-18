@@ -3739,14 +3739,11 @@ body.page .main-navigation {
 }
 
 .patch-sidebar-search-form {
-  height: 100px;
-  padding: 0.5rem 0;
 }
 
 .patch-sidebar-mix {
   flex: 1;
   overflow: auto;
-  padding: 0.5rem 0;
 }
 
 .patch-mix {
@@ -3758,8 +3755,6 @@ body.page .main-navigation {
 ## Header
 --------------------------------------------------------------*/
 .site-header {
-  padding: 1em;
-  height: 150px;
 }
 
 .site-header.featured-image {
@@ -5055,8 +5050,6 @@ body.page .main-navigation {
 --------------------------------------------------------------*/
 /* Site footer */
 .site-footer {
-  height: 100px;
-  padding: 0 0 2rem 0;
 }
 
 .site-account {
